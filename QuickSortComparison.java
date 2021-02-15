@@ -3,16 +3,16 @@ package homework;
 
 public class QuickSortComparison {
 
-	private static int count;
-	// private static int copied;
+	private static int count = 0;
+	private static int copied = 0;
 
-	static int[] ab = { 90, 100, 20, 60, 80, 110, 120, 40, 10, 30, 50, 70 };
+	static int[] ab = {7, 18, 80, 86, 13, 0, 3, 94, 68, 17, 53, 74, 61, 32, 82, 47};
 
 	public static void main(String[] args) {
 		printArray();
 		quickSort(0, ab.length - 1);
 		printArray();
-		// System.out.println(copied);
+		System.out.println("The total amount copied is " + copied);
 		System.out.println("The total amount of comparisons is " + count);
 	}
 
@@ -34,38 +34,45 @@ public class QuickSortComparison {
 		if (size == 1)
 			return;
 		else if (size == 2) {
-			if (ab[left] > ab[right])
-				swap(left, right);
 			count++;
+			if (ab[left] > ab[right]) {
+				swap(left, right);
+
+			}
 
 		} else {
+			count += 3;
+
 			if (ab[left] > ab[right - 1]) {
 				swap(left, right - 1);
-				count++;
+
 			}
 			if (ab[left] > ab[right]) {
 				swap(left, right);
-				count++;
+
 			}
 			if (ab[right - 1] > ab[right]) {
 				swap(right - 1, right);
-				count++;
+
 			}
 		}
 	}
 
 	private static int medianOfThree(int left, int right) {
 		int middle = (left + right) / 2;
-
-		if (ab[left] > ab[middle])
+		count += 3;
+		if (ab[left] > ab[middle]) {
 			swap(left, middle);
-		count++;
-		if (ab[left] > ab[right])
+
+		}
+		if (ab[left] > ab[right]) {
 			swap(left, right);
-		count++;
-		if (ab[middle] > ab[right])
+
+		}
+		if (ab[middle] > ab[right]) {
 			swap(middle, right);
-		count++;
+
+		}
 		swap(middle, right);
 		return ab[right];
 
@@ -76,14 +83,18 @@ public class QuickSortComparison {
 		int rightPtr = right;
 
 		while (true) {
+			count += 2;
 			while (ab[++leftPtr] < pivotValue)
-				; // No operation done in this while loop
+				count++;
+			// No operation done in this while loop
 			while (ab[--rightPtr] > pivotValue)
-				; // No operation
 
-			if (leftPtr >= rightPtr)
+				count++;// No operation
+			count++;
+			if (leftPtr >= rightPtr) {
+
 				break;
-			else {
+			} else {
 				swap(leftPtr, rightPtr);
 			}
 		}
@@ -96,7 +107,8 @@ public class QuickSortComparison {
 		int temp = ab[leftPtr];
 		ab[leftPtr] = ab[rightPtr];
 		ab[rightPtr] = temp;
-		count += 3;
+		copied += 3;
+
 	}
 
 	private static void printArray() {
