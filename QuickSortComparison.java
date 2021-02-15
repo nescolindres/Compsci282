@@ -3,10 +3,10 @@ package homework;
 
 public class QuickSortComparison {
 
-	private static int count = 0;
-	private static int copied = 0;
+	private static int count;
+	private static int copied;
 
-	static int[] ab = {7, 18, 80, 86, 13, 0, 3, 94, 68, 17, 53, 74, 61, 32, 82, 47};
+	static int[] ab = {90, 100 ,20 ,60 ,80 ,110 ,120 ,40 ,10 ,30 ,50 ,70};
 
 	public static void main(String[] args) {
 		printArray();
@@ -30,30 +30,24 @@ public class QuickSortComparison {
 
 	private static void manualSort(int left, int right) {
 		int size = right - left + 1;
-
 		if (size == 1)
 			return;
 		else if (size == 2) {
 			count++;
 			if (ab[left] > ab[right]) {
 				swap(left, right);
-
+				count++;
 			}
-
 		} else {
 			count += 3;
-
 			if (ab[left] > ab[right - 1]) {
 				swap(left, right - 1);
-
 			}
 			if (ab[left] > ab[right]) {
 				swap(left, right);
-
 			}
 			if (ab[right - 1] > ab[right]) {
 				swap(right - 1, right);
-
 			}
 		}
 	}
@@ -84,12 +78,14 @@ public class QuickSortComparison {
 
 		while (true) {
 			count += 2;
-			while (ab[++leftPtr] < pivotValue)
-				count++;
+			while (ab[++leftPtr] < pivotValue) {
+				
+			}
+				// count++;
 			// No operation done in this while loop
-			while (ab[--rightPtr] > pivotValue)
-
-				count++;// No operation
+			while (ab[--rightPtr] > pivotValue)	{
+				
+			}
 			count++;
 			if (leftPtr >= rightPtr) {
 
